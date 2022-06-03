@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	Data int
@@ -16,7 +18,7 @@ func NewNode() *LinkedList {
 	return new(LinkedList)
 }
 
-func (n *LinkedList) Insert(data int) *LinkedList {
+func (n *LinkedList) AddElement(data int) {
 	if n.Length == 0 {
 		n1 := new(Node)
 		n1.Data = data
@@ -28,25 +30,65 @@ func (n *LinkedList) Insert(data int) *LinkedList {
 		n.List = n1
 	}
 	n.Length++
-	return n
 }
 
 func (n *LinkedList) Display() {
 	list := n.List
-	for list.Next != nil {
-		fmt.Printf("%d -> ", list.Data)
-		list = list.Next
+	i := 0
+	fmt.Println("\n*****************************************************************************************")
+	for {
+		fmt.Printf("(%d, %d) -> ", list.Data, i)
 		if list.Next == nil {
-			fmt.Printf("%d -> ", list.Data)
+			break
 		}
+		list = list.Next
+		i++
 	}
+	fmt.Println("\n*****************************************************************************************")
+}
+
+func (n *LinkedList) Search(data int) {
+	list := n.List
+	for {
+		if list.Data == data {
+			fmt.Println("found: ", data)
+			return
+		}
+		if list.Next == nil {
+			break
+		}
+		list = list.Next
+	}
+	fmt.Println("not found: ", data)
+}
+
+func (n *LinkedList) Insert(data int, index int) {
+	list := n.List
+	e := new(Node)
+	e.Data = data
+	if index == 0 {
+		e.Next = n.List
+		n.List = e
+	} else {
+		for i := 0; i < index-1; i++ {
+			list = list.Next
+		}
+		e.Next = list.Next
+		n.List.Next = e
+	}
+	n.Length++
 }
 
 func main() {
-	a := []int{3, 6, 7, 8, 1, 4, 9, 5}
+	a := []int{3, 6, 7, 8, 1}
 	n := NewNode()
-	for _, k := range a {
-		n.Insert(k)
+	for i := len(a) - 1; i >= 0; i-- {
+		n.AddElement(a[i])
 	}
+	n.Search(99)
+	n.Search(67)
+	n.Display()
+
+	n.Insert(99, 2)
 	n.Display()
 }
