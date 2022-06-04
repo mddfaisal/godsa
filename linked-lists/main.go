@@ -35,7 +35,7 @@ func (n *LinkedList) AddElement(data int) {
 func (n *LinkedList) Display() {
 	list := n.List
 	i := 0
-	fmt.Println("\n*****************************************************************************************")
+	fmt.Println("")
 	for {
 		fmt.Printf("(%d, %d) -> ", list.Data, i)
 		if list.Next == nil {
@@ -44,7 +44,7 @@ func (n *LinkedList) Display() {
 		list = list.Next
 		i++
 	}
-	fmt.Println("\n*****************************************************************************************")
+	fmt.Println("")
 }
 
 func (n *LinkedList) Search(data int) {
@@ -74,9 +74,28 @@ func (n *LinkedList) Insert(data int, index int) {
 			list = list.Next
 		}
 		e.Next = list.Next
-		n.List.Next = e
+		list.Next = e
 	}
 	n.Length++
+}
+
+func (n *LinkedList) Remove(index int) {
+	list := n.List
+	for i := 0; i < index-1; i++ {
+		list = list.Next
+	}
+	list.Next = list.Next.Next
+	n.Length--
+}
+
+func (n *LinkedList) Sort() {
+	fmt.Println("length: ", n.Length)
+	// list := n.List
+	// for i := 0; i <= n.Length; i++ {
+	// 	for j := 0; j < n.Length-i-1; j++ {
+
+	// 	}
+	// }
 }
 
 func main() {
@@ -89,6 +108,12 @@ func main() {
 	n.Search(67)
 	n.Display()
 
-	n.Insert(99, 2)
+	n.Insert(99, 3)
+	n.Display()
+
+	n.Remove(3)
+	n.Display()
+
+	n.Sort()
 	n.Display()
 }
