@@ -89,13 +89,16 @@ func (n *LinkedList) Remove(index int) {
 }
 
 func (n *LinkedList) Sort() {
-	fmt.Println("length: ", n.Length)
-	// list := n.List
-	// for i := 0; i <= n.Length; i++ {
-	// 	for j := 0; j < n.Length-i-1; j++ {
-
-	// 	}
-	// }
+	fmt.Println("Sorted list")
+	for i := 0; i <= n.Length; i++ {
+		list := n.List
+		for j := 0; j < n.Length-i-1; j++ {
+			if list.Data > list.Next.Data {
+				list.Data, list.Next.Data = list.Next.Data, list.Data
+			}
+			list = list.Next
+		}
+	}
 }
 
 func main() {
@@ -109,9 +112,10 @@ func main() {
 	n.Display()
 
 	n.Insert(99, 3)
+	n.Insert(67, 5)
 	n.Display()
 
-	n.Remove(3)
+	n.Remove(4)
 	n.Display()
 
 	n.Sort()
