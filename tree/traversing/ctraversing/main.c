@@ -21,7 +21,7 @@ void Treecreate()
     while (!isEmpty(q))
     {
         p = dequeue(&q);
-        printf("enter left child of %d", p->data);
+        printf("enter left child of %d: ", p->data);
         scanf("%d", &x);
         if (x != -1)
         {
@@ -31,7 +31,7 @@ void Treecreate()
             p->lchild = t;
             enqueue(&q, t);
         }
-        printf("enter right child of %d", p->data);
+        printf("enter right child of %d: ", p->data);
         scanf("%d", &x);
 
         if (x != -1)
@@ -78,9 +78,15 @@ void Postorder(struct Node *p)
 int main()
 {
     Treecreate();
+
+    printf("\nPre Order: ");
     Preorder(root);
-    printf("\nPost Order ");
+
+    printf("\nPost Order: ");
     Postorder(root);
+
+    printf("\nIn Order: ");
+    Inorder(root);
 
     return 0;
 }
