@@ -9,7 +9,7 @@ import (
 
 func preorder(t *structs.TNode) {
 	if t != nil {
-		fmt.Printf("%d ", t.Data)
+		fmt.Printf("%s ", t.Data)
 		preorder(t.Lchild)
 		preorder(t.Rchild)
 	}
@@ -19,15 +19,15 @@ func postorder(t *structs.TNode) {
 	if t != nil {
 		postorder(t.Lchild)
 		postorder(t.Rchild)
-		fmt.Printf("%d ", t.Data)
+		fmt.Printf("%s ", t.Data)
 	}
 }
 
 func inorder(t *structs.TNode) {
 	if t != nil {
-		postorder(t.Lchild)
-		fmt.Printf("%d ", t.Data)
-		postorder(t.Rchild)
+		inorder(t.Lchild)
+		fmt.Printf("%s ", t.Data)
+		inorder(t.Rchild)
 	}
 }
 
@@ -42,4 +42,16 @@ func main() {
 
 	fmt.Println("\nIn order: ")
 	inorder(t.Store)
+
+	fmt.Println("\nLevel order traversal: ")
+	t.LevelOrder()
+
+	fmt.Println("\nIterative preorder: ")
+	t.Preorder()
+
+	fmt.Println("\nIterative postorder: ")
+	t.Postorder()
+
+	fmt.Println("\nIterative inorder: ")
+	t.Inorder()
 }

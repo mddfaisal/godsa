@@ -59,7 +59,7 @@ func (q *Queue) Display() {
 	store := q.Store
 	fmt.Println("")
 	for i := q.Top; i >= 0; i-- {
-		fmt.Printf("(%p, (%p, %d, %p)) -> ", store.Data, store.Data.Lchild, store.Data.Data, store.Data.Rchild)
+		fmt.Printf("(%p, (%p, %s, %p)) -> ", store.Data, store.Data.Lchild, store.Data.Data, store.Data.Rchild)
 		store = store.Next
 	}
 	fmt.Println("")
