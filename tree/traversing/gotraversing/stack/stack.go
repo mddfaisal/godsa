@@ -63,7 +63,7 @@ func (s *Stack) Display() {
 	store := s.Store
 	fmt.Println("")
 	for i := s.Top; i >= 0; i-- {
-		fmt.Printf("(%p, (%p, %s, %p)) -> ", store.Data, store.Data.Lchild, store.Data.Data, store.Data.Rchild)
+		fmt.Printf("%s ", store.Data.Data)
 		store = store.Next
 	}
 	fmt.Println("")

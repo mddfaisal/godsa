@@ -81,7 +81,30 @@ func (t *Tree) Preorder() {
 	}
 }
 
-func (t *Tree) Postorder() {}
+// 1. Push root to first stack.
+// 2. Loop while first stack is not empty
+//    2.1 Pop a node from first stack and push it to second stack
+//    2.2 Push left and right children of the popped node to first stack
+// 3. Print contents of second stack
+// https://www.geeksforgeeks.org/iterative-postorder-traversal/
+func (t *Tree) Postorder() {
+	st1 := stack.NewStack(10)
+	st2 := stack.NewStack(10)
+	r := t.Store
+	// step 1
+	st1.Push(r)
+	for !st1.IsEmpty() {
+		n := st1.Pop()
+		st2.Push(n)
+		if n.Lchild != nil {
+			st1.Push(n.Lchild)
+		}
+		if n.Rchild != nil {
+			st1.Push(n.Rchild)
+		}
+	}
+	st2.Display()
+}
 
 // 1) Create an empty stack S.
 // 2) Initialize current node as root
