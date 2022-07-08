@@ -1,6 +1,6 @@
-Insertion sort
+# Insertion sort
 Elapsed:  1.370243158s
-Bubble sort
+# Bubble sort
 Elapsed:  5.068742107s
-Merge sort
+# Merge sort
 Elapsed:  15.229384ms
