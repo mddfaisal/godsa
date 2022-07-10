@@ -3,10 +3,10 @@ package mergesort
 const Path = "../../input/long.arr"
 
 func Sort(arr []int) []int {
-	return mergesort(arr)
+	return mergeSort(arr)
 }
 
-func mergesort(arr []int) []int {
+func mergeSort(arr []int) []int {
 	size := len(arr)
 	if size == 1 {
 		return arr
@@ -21,7 +21,7 @@ func mergesort(arr []int) []int {
 			right[i-mid] = arr[i]
 		}
 	}
-	return merge(mergesort(left), mergesort(right))
+	return merge(mergeSort(left), mergeSort(right))
 }
 
 func merge(left []int, right []int) []int {
@@ -32,7 +32,7 @@ func merge(left []int, right []int) []int {
 			result[i] = left[0]
 			left = left[1:]
 		} else {
-			result[i] = result[0]
+			result[i] = right[0]
 			right = right[1:]
 		}
 		i++
