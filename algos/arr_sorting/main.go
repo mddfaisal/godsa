@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+var ip []int = input.LongInputIntArr()
+
 func main() {
 	insertionsort()
 	bubblesort()
@@ -14,7 +16,7 @@ func main() {
 
 func bubblesort() {
 	t := time.Now()
-	arr := input.Input()
+	arr := ip
 
 	for i := 0; i < len(arr)-1; i++ {
 		for j := 0; j < len(arr)-i-1; j++ {
@@ -23,14 +25,14 @@ func bubblesort() {
 			}
 		}
 	}
-	// fmt.Println(arr)
+	fmt.Println(arr)
 	fmt.Println("Bubble sort")
 	fmt.Println("Elapsed: ", time.Since(t))
 }
 
 func insertionsort() {
 	t := time.Now()
-	arr := input.Input()
+	arr := ip
 
 	for i := 1; i < len(arr); i++ {
 		key := arr[i]
@@ -42,15 +44,15 @@ func insertionsort() {
 		arr[j+1] = key
 	}
 
-	// fmt.Println(arr)
+	fmt.Println(arr)
 	fmt.Println("Insertion sort")
 	fmt.Println("Elapsed: ", time.Since(t))
 }
 
 func mergesortalgo() {
 	t := time.Now()
-	arr := input.Input()
-	mergesort(arr)
+	arr := ip
+	fmt.Println(mergesort(arr))
 	fmt.Println("Merge sort")
 	fmt.Println("Elapsed: ", time.Since(t))
 }
