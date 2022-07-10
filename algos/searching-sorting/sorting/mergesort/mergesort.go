@@ -2,8 +2,8 @@ package mergesort
 
 const Path = "../../input/long.arr"
 
-func Sort(arr []int) {
-	mergesort(arr)
+func Sort(arr []int) []int {
+	return mergesort(arr)
 }
 
 func mergesort(arr []int) []int {
