@@ -1,19 +1,12 @@
 package stack
 
 import (
+	"ds/datatype"
+	"ds/utils"
 	"fmt"
 )
 
-type node struct {
-	data interface{}
-	next *node
-}
-
-type Stack struct {
-	Top   int
-	Size  int
-	Store *node
-}
+type Stack datatype.Stack
 
 func NewStack(size int) *Stack {
 	s := new(Stack)
@@ -27,12 +20,12 @@ func (s *Stack) Push(i interface{}) {
 		return
 	}
 	if s.IsEmpty() {
-		s.Store = &node{data: i, next: nil}
+		s.Store = &datatype.Node{Data: i, Next: nil}
 		s.Top++
 		return
 	}
-	e := &node{data: i, next: nil}
-	e.next = s.Store
+	e := &datatype.Node{Data: i, Next: nil}
+	e.Next = s.Store
 	s.Store = e
 	s.Top++
 }
@@ -42,14 +35,14 @@ func (s *Stack) Pop() interface{} {
 	if s.IsEmpty() {
 		return r
 	}
-	r = s.Store.data
-	s.Store = s.Store.next
+	r = s.Store.Data
+	s.Store = s.Store.Next
 	s.Top--
 	return r
 }
 
 func (s *Stack) Peek() interface{} {
-	return s.Store.data
+	return s.Store.Data
 }
 
 func (s *Stack) IsFull() bool {
@@ -64,8 +57,8 @@ func (s *Stack) Display() {
 	store := s.Store
 	fmt.Println("")
 	for i := s.Top; i >= 0; i-- {
-		fmt.Printf("%v -> ", store.data)
-		store = store.next
+		fmt.Printf("%v -> ", utils.Interface2Val(store.Data))
+		store = store.Next
 	}
 	fmt.Println("")
 }

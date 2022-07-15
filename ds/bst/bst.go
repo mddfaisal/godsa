@@ -1,20 +1,12 @@
 package bst
 
 import (
+	"ds/datatype"
 	"ds/stack"
 	"fmt"
 )
 
-type node struct {
-	key    int
-	parent *node
-	left   *node
-	right  *node
-}
-
-type Bst struct {
-	Tree *node
-}
+type Bst datatype.Bst
 
 func NewBst() *Bst {
 	return new(Bst)
@@ -22,23 +14,23 @@ func NewBst() *Bst {
 
 func (b *Bst) Insert(i int) {
 	var (
-		root *node = b.Tree
-		temp *node
+		root = b.Tree
+		temp *datatype.TNode
 	)
 	for root != nil {
 		temp = root
-		if i < root.key {
-			root = root.left
+		if i < root.Key {
+			root = root.Left
 		} else {
-			root = root.right
+			root = root.Right
 		}
 	}
 	if temp == nil {
-		b.Tree = &node{key: i}
-	} else if i < temp.key {
-		temp.left = &node{key: i, parent: temp}
+		b.Tree = &datatype.TNode{Key: i}
+	} else if i < temp.Key {
+		temp.Left = &datatype.TNode{Key: i, Parent: temp}
 	} else {
-		temp.right = &node{key: i, parent: temp}
+		temp.Right = &datatype.TNode{Key: i, Parent: temp}
 	}
 
 }
@@ -47,16 +39,16 @@ func (b *Bst) Delete(i int) {
 
 }
 
-func (b *Bst) Transplant(u *node, v *node) {
-	if u.parent == nil {
+func (b *Bst) Transplant(u *datatype.TNode, v *datatype.TNode) {
+	if u.Parent == nil {
 		b.Tree = v
-	} else if u == u.parent.left {
-		u.parent.left = v
+	} else if u == u.Parent.Left {
+		u.Parent.Left = v
 	} else {
-		u.parent.right = v
+		u.Parent.Right = v
 	}
 	if v != nil {
-		v.parent = u.parent
+		v.Parent = u.Parent
 	}
 }
 
@@ -64,33 +56,33 @@ func (b *Bst) Search(i int) bool {
 	var (
 		root = b.Tree
 	)
-	for root != nil && root.key != i {
-		if i > root.key {
-			root = root.right
+	for root != nil && root.Key != i {
+		if i > root.Key {
+			root = root.Right
 			continue
 		}
-		root = root.left
+		root = root.Left
 	}
 	if root == nil {
 		return false
 	}
-	return root.key == i
+	return root.Key == i
 }
 
 func (b *Bst) Max() int {
 	root := b.Tree
-	for root.right != nil {
-		root = root.right
+	for root.Right != nil {
+		root = root.Right
 	}
-	return root.key
+	return root.Key
 }
 
 func (b *Bst) Min() int {
 	root := b.Tree
-	for root.left != nil {
-		root = root.left
+	for root.Left != nil {
+		root = root.Left
 	}
-	return root.key
+	return root.Key
 }
 
 func (b *Bst) TreeSuccessor(i int) {
@@ -107,12 +99,12 @@ func (b *Bst) InorderDisplay() {
 	for !done {
 		if current != nil {
 			st.Push(current)
-			current = current.left
+			current = current.Left
 		} else {
 			if !st.IsEmpty() {
-				current = st.Pop().(*node)
-				fmt.Printf("%d ", current.key)
-				current = current.right
+				current = st.Pop().(*datatype.TNode)
+				fmt.Printf("%d -> ", current.Key)
+				current = current.Right
 			} else {
 				done = true
 			}
@@ -121,10 +113,47 @@ func (b *Bst) InorderDisplay() {
 	fmt.Println("")
 }
 
-func (b *Bst) PreorderDisplay() {}
+func (b *Bst) PreorderDisplay() {
+	var (
+		stk  = stack.NewStack(100)
+		root = b.Tree
+	)
+	fmt.Println("Preorder display")
+	for !stk.IsEmpty() || root != nil {
+		if root == nil {
+			root = stk.Pop().(*datatype.TNode)
+			root = root.Right
+			continue
+		}
+		fmt.Printf("%d -> ", root.Key)
+		stk.Push(root)
+		root = root.Left
+	}
+	fmt.Println("")
+}
 
-func (b *Bst) PostorderDisplay() {}
+func (b *Bst) PostorderDisplay() {
+	var (
+		xstk = stack.NewStack(100)
+		ystk = stack.NewStack(100)
+		root = b.Tree
+	)
+	xstk.Push(root)
+	fmt.Println("Postorder display")
+	for !xstk.IsEmpty() {
+		n := xstk.Pop().(*datatype.TNode)
+		ystk.Push(n)
+		if n.Left != nil {
+			xstk.Push(n.Left)
+		}
+		if n.Right != nil {
+			xstk.Push(n.Right)
+		}
+	}
+	ystk.Display()
+	fmt.Println("")
+}
 
 func (b *Bst) Display() {
-	fmt.Println(b.Tree.key, b.Tree.parent)
+	fmt.Println(b.Tree.Key, b.Tree.Parent)
 }
