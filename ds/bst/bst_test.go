@@ -20,4 +20,5 @@ func TestInsertionInBst(t *testing.T) {
 	t.Log("Min", b.Min())
 	t.Log("Searching ", search_item, b.Search(search_item))
 	b.InorderDisplay()
+	b.Display()
 }

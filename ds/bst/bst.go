@@ -6,9 +6,10 @@ import (
 )
 
 type node struct {
-	key   int
-	left  *node
-	right *node
+	key    int
+	parent *node
+	left   *node
+	right  *node
 }
 
 type Bst struct {
@@ -23,7 +24,6 @@ func (b *Bst) Insert(i int) {
 	var (
 		root *node = b.Tree
 		temp *node
-		e    = &node{key: i}
 	)
 	for root != nil {
 		temp = root
@@ -34,17 +34,30 @@ func (b *Bst) Insert(i int) {
 		}
 	}
 	if temp == nil {
-		b.Tree = e
+		b.Tree = &node{key: i}
 	} else if i < temp.key {
-		temp.left = e
+		temp.left = &node{key: i, parent: temp}
 	} else {
-		temp.right = e
+		temp.right = &node{key: i, parent: temp}
 	}
 
 }
 
 func (b *Bst) Delete(i int) {
 
+}
+
+func (b *Bst) Transplant(u *node, v *node) {
+	if u.parent == nil {
+		b.Tree = v
+	} else if u == u.parent.left {
+		u.parent.left = v
+	} else {
+		u.parent.right = v
+	}
+	if v != nil {
+		v.parent = u.parent
+	}
 }
 
 func (b *Bst) Search(i int) bool {
@@ -106,4 +119,12 @@ func (b *Bst) InorderDisplay() {
 		}
 	}
 	fmt.Println("")
+}
+
+func (b *Bst) PreorderDisplay() {}
+
+func (b *Bst) PostorderDisplay() {}
+
+func (b *Bst) Display() {
+	fmt.Println(b.Tree.key, b.Tree.parent)
 }
