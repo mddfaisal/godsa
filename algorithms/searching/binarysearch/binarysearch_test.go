@@ -1,9 +1,9 @@
 package binarysearch_test
 
 import (
-	"algorithms/searching/binarysearch"
-	"algorithms/sorting/mergesort"
-	"algorithms/utils"
+	"godsa/algorithms/searching/binarysearch"
+	"godsa/algorithms/sorting/mergesort"
+	"godsa/utils"
 	"testing"
 	"time"
 )

@@ -1,6 +1,6 @@
 package exponentialsearch
 
-import "algorithms/searching/binarysearch"
+import "godsa/algorithms/searching/binarysearch"
 
 func Search(arr []int, key int) bool {
 	found := false

@@ -1,8 +1,8 @@
 package stack_test
 
 import (
-	"ds/stack"
 	"fmt"
+	"godsa/ds/stack"
 	"testing"
 )
 

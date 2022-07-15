@@ -1,9 +1,9 @@
 package jumpsearch_test
 
 import (
-	"algorithms/searching/jumpsearch"
-	"algorithms/sorting/mergesort"
-	"algorithms/utils"
+	"godsa/algorithms/searching/jumpsearch"
+	"godsa/algorithms/sorting/mergesort"
+	"godsa/utils"
 	"testing"
 	"time"
 )

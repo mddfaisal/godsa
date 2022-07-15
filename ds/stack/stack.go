@@ -1,9 +1,9 @@
 package stack
 
 import (
-	"ds/datatype"
-	"ds/utils"
 	"fmt"
+	"godsa/datatype"
+	"godsa/utils"
 )
 
 type Stack datatype.Stack

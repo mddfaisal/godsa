@@ -1,9 +1,9 @@
 package bst
 
 import (
-	"ds/datatype"
-	"ds/stack"
 	"fmt"
+	"godsa/datatype"
+	"godsa/ds/stack"
 )
 
 type Bst datatype.Bst

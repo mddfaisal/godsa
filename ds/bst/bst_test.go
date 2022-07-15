@@ -1,7 +1,7 @@
 package bst_test
 
 import (
-	"ds/bst"
+	"godsa/ds/bst"
 	"testing"
 )
 

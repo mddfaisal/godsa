@@ -1,8 +1,8 @@
 package bubblesort_test
 
 import (
-	"algorithms/sorting/bubblesort"
-	"algorithms/utils"
+	"godsa/algorithms/sorting/bubblesort"
+	"godsa/utils"
 	"testing"
 	"time"
 )

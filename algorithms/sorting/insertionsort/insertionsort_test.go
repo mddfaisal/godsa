@@ -1,8 +1,8 @@
 package insertionsort_test
 
 import (
-	"algorithms/sorting/insertionsort"
-	"algorithms/utils"
+	"godsa/algorithms/sorting/insertionsort"
+	"godsa/utils"
 	"testing"
 	"time"
 )

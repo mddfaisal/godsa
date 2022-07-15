@@ -1,10 +1,10 @@
 package exponentialsearch_test
 
 import (
-	"algorithms/searching/exponentialsearch"
-	"algorithms/searching/jumpsearch"
-	"algorithms/sorting/mergesort"
-	"algorithms/utils"
+	"godsa/algorithms/searching/exponentialsearch"
+	"godsa/algorithms/searching/jumpsearch"
+	"godsa/algorithms/sorting/mergesort"
+	"godsa/utils"
 	"testing"
 	"time"
 )

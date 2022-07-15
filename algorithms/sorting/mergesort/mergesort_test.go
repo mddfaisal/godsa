@@ -1,8 +1,8 @@
 package mergesort_test
 
 import (
-	"algorithms/sorting/mergesort"
-	"algorithms/utils"
+	"godsa/algorithms/sorting/mergesort"
+	"godsa/utils"
 	"testing"
 	"time"
 )

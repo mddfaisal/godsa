@@ -1,9 +1,9 @@
 package selectionsort_test
 
 import (
-	"algorithms/searching/binarysearch"
-	"algorithms/sorting/selectionsort"
-	"algorithms/utils"
+	"godsa/algorithms/searching/binarysearch"
+	"godsa/algorithms/sorting/selectionsort"
+	"godsa/utils"
 	"testing"
 	"time"
 )

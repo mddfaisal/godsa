@@ -1,8 +1,8 @@
 package linearsearch_test
 
 import (
-	"algorithms/searching/linearsearch"
-	"algorithms/utils"
+	"godsa/algorithms/searching/linearsearch"
+	"godsa/utils"
 	"testing"
 	"time"
 )
