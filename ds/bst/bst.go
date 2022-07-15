@@ -47,17 +47,37 @@ func (b *Bst) Delete(i int) {
 
 }
 
-func (b *Bst) Search() bool {
-	found := false
-	return found
+func (b *Bst) Search(i int) bool {
+	var (
+		root = b.Tree
+	)
+	for root != nil && root.key != i {
+		if i > root.key {
+			root = root.right
+			continue
+		}
+		root = root.left
+	}
+	if root == nil {
+		return false
+	}
+	return root.key == i
 }
 
 func (b *Bst) Max() int {
-	return 0
+	root := b.Tree
+	for root.right != nil {
+		root = root.right
+	}
+	return root.key
 }
 
 func (b *Bst) Min() int {
-	return 0
+	root := b.Tree
+	for root.left != nil {
+		root = root.left
+	}
+	return root.key
 }
 
 func (b *Bst) TreeSuccessor(i int) {
