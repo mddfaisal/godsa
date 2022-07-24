@@ -1,34 +1,24 @@
 package foursum
 
-type pair struct {
-	num1 int
-	num2 int
-}
-
-func (p *pair) sum() int {
-	return p.num1 + p.num2
-}
-
 func FourSum(nums []int, target int) [][]int {
-	result := [][]int{}
-	pairs := []pair{}
-	pair_map := map[[4]int]int{}
+	sum_map, result := map[[4]int]int{}, [][]int{}
 	for i := 0; i < len(nums); i++ {
-		for j := i + 1; j < len(nums); j++ {
-			pairs = append(pairs, pair{num1: nums[i], num2: nums[j]})
-		}
-	}
-
-	for i := 0; i < len(pairs); i++ {
-		for j := i + 1; j < len(pairs); j++ {
-			if pairs[i].sum()+pairs[j].sum() == target {
-				a := sort([]int{pairs[i].num1, pairs[i].num2, pairs[j].num1, pairs[j].num2})
-				pair_map[[4]int{a[0], a[1], a[2], a[3]}] = target
+		for j := i; j < len(nums); j++ {
+			for k := j; k < len(nums); k++ {
+				for l := k; l < len(nums); l++ {
+					if i != j && j != k && k != l {
+						sum := nums[i] + nums[j] + nums[k] + nums[l]
+						if sum == target {
+							arr := sort([]int{nums[i], nums[j], nums[k], nums[l]})
+							a := [4]int{arr[0], arr[1], arr[2], arr[3]}
+							sum_map[a] = sum
+						}
+					}
+				}
 			}
 		}
 	}
-
-	for k, _ := range pair_map {
+	for k, _ := range sum_map {
 		a := []int{}
 		for _, v := range k {
 			a = append(a, v)
